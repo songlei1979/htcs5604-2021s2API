@@ -4,8 +4,11 @@ from flask import Flask, send_from_directory, jsonify
 import simplejson as json
 
 from Classes import DataShow
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/')
