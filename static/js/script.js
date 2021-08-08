@@ -84,7 +84,7 @@ function viewAnOutlet(OutletID){
 }
 
 function addAnOutlet(inputdata){
-    var msg = "";
+
     $.ajax({
             type: 'POST',
             url: 'https://htcs5604-2021s2api.herokuapp.com/addanoutletAPI',
@@ -95,9 +95,9 @@ function addAnOutlet(inputdata){
                 msg = data;
             },
             error: function(err) {
-                console.log(err)
                 msg= err;
             }
         });
+    var msg = "New outlet saved successfully";
     return msg;
 }
