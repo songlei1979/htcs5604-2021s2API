@@ -54,7 +54,7 @@ class DataShow:
     def outlets(self):
         db = DB()
         cursor = db.connection.cursor()
-        sql = "SELECT * FROM outlet ouder by OutletName"
+        sql = "SELECT * FROM outlet order by OutletName"
         cursor.execute(sql)
         result = cursor.fetchall()
         outlets = []
