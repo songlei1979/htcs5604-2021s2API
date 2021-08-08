@@ -48,3 +48,37 @@ function productCategory(categoryID){
         });
     return category;
 }
+
+function viewAllOtulets(){
+    var outlets = []
+    $.ajax({
+            type: 'GET',
+            url: 'https://htcs5604-2021s2api.herokuapp.com/outlets',
+            async: false,
+            dataType: "JSON", // data type expected from server
+            success: function (data) {
+                outlets = data;
+            },
+            error: function(err) {
+                console.log('Error: ' + err);
+            }
+        });
+    return outlets;
+}
+
+function viewAnOutlet(OutletID){
+    var outlet = "";
+    $.ajax({
+            type: 'GET',
+            url: 'https://htcs5604-2021s2api.herokuapp.com/outlet/'+OutletID,
+            async: false,
+            dataType: "JSON", // data type expected from server
+            success: function (data) {
+                outlet = data;
+            },
+            error: function(err) {
+                console.log('Error: ' + err);
+            }
+        });
+    return outlet;
+}

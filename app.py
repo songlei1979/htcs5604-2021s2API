@@ -47,6 +47,13 @@ def viewaproduct():
         return render_template('viewaproduct.html', username=session['username'])
     return redirect(url_for('login'))
 
+@app.route('/viewanoutlet')
+def viewaproduct():
+    # check if user is loggedin
+    if 'loggedin' in session:
+        return render_template('viewanoutlet.html', username=session['username'])
+    return redirect(url_for('login'))
+
 # products
 @app.route('/products')
 def getProducts():

@@ -10,7 +10,7 @@
             var products = viewAllProduct();
             var i = 0;
             $("#productlist").empty();
-            $("#productlist").append("<option value='0'>please select one product</option>");
+            $("#productlist").append("<option value='0'>please select a product</option>");
             while (i<products.length){
                 var product = products[i];
                 $("#productlist").append("<option value='"+product.ProductID+"'>"+product.Productname+"</option>");

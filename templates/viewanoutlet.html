@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <script>
+        $(document).ready(function (){
+            $("#exitBtn").hide();
+            $("#anotherBtn").hide();
+            var outlets = viewAllOtulets();
+            var i = 0;
+            $("#outletlist").empty();
+            $("#outletlist").append("<option value='0'>please select an outlet</option>");
+            while (i<outlets.length){
+                var outlet = outlets[i];
+                $("#outletlist").append("<option value='"+outlet.OutletID+"'>"+outlet.OutletName+"</option>");
+                i = i + 1;
+            }
+            $("#outletlist").change(function (){
+                var OutletID = $("#outletlist").val();
+                var outlet = viewAnOutlet(OutletID);
+                $("#OutletID").text(outlet.OutletID);
+                $("#OutletName").text(outlet.OutletName);
+                $("#Streetaddress").text(outlet.Streetaddress);
+                $("#Suburb").text(outlet.Suburb);
+                $("#City").text(outlet.City);
+                $("#Postcode").text(outlet.Postcode);
+                $("#ContactFirstName").text(outlet.ContactFirstName);
+                $("#ContactLastName").text(outlet.ContactLastName);
+                $("#Emailaddress").text(outlet.Emailaddress);
+                $("#PhoneNumber").text(outlet.PhoneNumber);
+                $("#exitBtn").show();
+                $("#anotherBtn").show();
+            });
+            $("#exitBtn").click(function (){
+                window.location.href = "{{ url_for('home') }}";
+            });
+            $("#anotherBtn").click(function (){
+                $("#OutletID").text("");
+                $("#OutletName").text("");
+                $("#Streetaddress").text("");
+                $("#Suburb").text("");
+                $("#City").text("");
+                $("#Postcode").text("");
+                $("#ContactFirstName").text("");
+                $("#ContactLastName").text("");
+                $("#Emailaddress").text("");
+                $("#PhoneNumber").text("");
+            });
+        });
+    </script>
+    <h1 class="h2">Dashboard</h1>
+    <p>Welcome back, {{ username }}!</p>
+    <div class="login-box">
+    <div class="login-header">View an outlet</div>
+    <div class="login-body">
+        <p>Please select a outlet</p>
+        <form class="form-group" method="post" onsubmit="return false">
+            <lable>Outlet</lable>
+            <select id = "outletlist">
+
+            </select>
+        </form>
+        <div id="outletInfo">
+            <table>
+                <tr><td>Outlet ID</td><td id="OutletID"></td></tr>
+                <tr><td>Outlet Name</td><td id="OutletName"></td></tr>
+                <tr><td>Streetaddress</td><td id="Streetaddress"></td></tr>
+                <tr><td>Suburb</td><td id="Suburb"></td></tr>
+                <tr><td>Stock Level</td><td id="City"></td></tr>
+                <tr><td>City</td><td id="Postcode"></td></tr>
+                <tr><td>Contact FirstName</td><td id="ContactFirstName"></td></tr>
+                <tr><td>Contact LastName</td><td id="ContactLastName"></td></tr>
+                <tr><td>Emailaddress</td><td id="Emailaddress"></td></tr>
+                <tr><td>PhoneNumber</td><td id="PhoneNumber"></td></tr>
+            </table>
+            <button id="exitBtn">Close</button>
+            <button id="anotherBtn">Choose another</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
