@@ -60,6 +60,13 @@ def addanoutlet():
         return render_template('addanoutlet.html', username=session['username'])
     return redirect(url_for('login'))
 
+@app.route('/addaproduct')
+def addaproduct():
+    # check if user is loggedin
+    if 'loggedin' in session:
+        return render_template('addaproduct.html', username=session['username'])
+    return redirect(url_for('login'))
+
 # products
 @app.route('/products')
 def getProducts():
