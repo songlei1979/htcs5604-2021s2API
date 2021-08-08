@@ -48,7 +48,7 @@ def viewaproduct():
     return redirect(url_for('login'))
 
 @app.route('/viewanoutlet')
-def viewaproduct():
+def viewanoutlet():
     # check if user is loggedin
     if 'loggedin' in session:
         return render_template('viewanoutlet.html', username=session['username'])
