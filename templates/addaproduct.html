@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <script>
+        $(document).ready(function (){
+            var categories = productCategories();
+            var i = 0;
+            $("#CategoryID").empty();
+            $("#CategoryID").append("<option value='0'>Please choose a category</otpion>")
+            while (i < categories.length){
+                var category = categories[i];
+                $("#CategoryID").append("<option value='"+category.categoryID+"'>"+categoryname+"</option>");
+            }
+
+            $("#savebtn").click(function (){
+                var Productbarcord = $("#Productbarcord").val();
+                var Productname = $("#Productname").val();
+                var Unitprice = $("#Unitprice").val();
+                var Stocklevel = $("#Stocklevel").val();
+                var CategoryID = $("#CategoryID").val();
+
+
+                alert(addAProduct($('form').serialize()));
+                $("#Productbarcord").val("");
+                $("#Productname").val("");
+                $("#Unitprice").val("");
+                $("#Stocklevel").val("");
+                $("#CategoryID").val("");
+            });
+
+            $("#exitBtn").click(function (){
+                window.location.href = "{{ url_for('home') }}";
+            });
+
+        });
+    </script>
+
+    <div class="login-box">
+    <div class="login-header">Add an outlet</div>
+    <div class="login-body">
+        <p>Please select a outlet</p>
+        <form class="form-group" method="post" onsubmit="return false">
+            <lable>Product Barcord</lable>
+            <input type="text" class="form-control" name="Productbarcord" placeholder="Product Barcord" id="Productbarcord" required>
+            <label>Product Name</label>
+            <input type="text" class="form-control" name="Productname" placeholder="Product Name" id="Productname" required>
+            <label>Unit Price</label>
+            <input type="number" class="form-control" name="Unitprice" placeholder="Unit Price" id="Unitprice" required>
+            <label>Stock Level</label>
+            <input type="number" class="form-control" name="Stocklevel" placeholder="Stock Level" id="Stocklevel" required>
+            <label>CategoryID</label>
+            <select id ="CategoryID" name="CategoryID" class="form-control">
+
+            </select>
+            <button class = "form-control btn btn-success" id = "savebtn">Save</button>
+             <button id="exitBtn">Close</button>
+        </form>
+
+
+    </div>
+</div>
+{% endblock %}

@@ -49,6 +49,23 @@ function productCategory(categoryID){
     return category;
 }
 
+function productCategories(){
+    var categories = "";
+    $.ajax({
+            type: 'GET',
+            url: 'https://htcs5604-2021s2api.herokuapp.com/productcategories',
+            async: false,
+            dataType: "JSON", // data type expected from server
+            success: function (data) {
+                categories = data;
+            },
+            error: function(err) {
+                console.log('Error: ' + err);
+            }
+        });
+    return categories;
+}
+
 function viewAllOtulets(){
     var outlets = []
     $.ajax({
