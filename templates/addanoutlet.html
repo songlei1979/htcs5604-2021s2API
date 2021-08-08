@@ -17,7 +17,7 @@
                 var Emailaddress = $("#Emailaddress").val();
                 var PhoneNumber = $("#PhoneNumber").val();
 
-                alert(addAnOutlet(OutletName, Streetaddress, Suburb, City, Postcode, ContactFirstName, ContactLastName, Emailaddress, PhoneNumber));
+                alert(addAnOutlet($('form').serialize()));
                 $("#OutletName").val("");
                 $("#Streetaddress").val("");
                 $("#Suburb").val("");

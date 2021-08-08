@@ -4,8 +4,7 @@ from flask import Flask, send_from_directory, request, redirect, url_for, sessio
 import simplejson as json
 
 from Classes import DataShow, Outlet
-from flask_cors import CORS
-
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 CORS(app)
@@ -123,16 +122,15 @@ def getOrderline(orderline_id):
 
 @app.route('/addanoutletAPI', methods=['POST'])
 def addanoutletapi():
-    request_data = request.get_json()
-    OutletName = request_data['OutletName']
-    Streetaddress = request_data['Streetaddress']
-    Suburb = request_data['Suburb']
-    City = request_data['City']
-    Postcode = request_data['Postcode']
-    ContactFirstName = request_data['ContactFirstName']
-    ContactLastName = request_data['ContactLastName']
-    Emailaddress = request_data['Emailaddress']
-    PhoneNumber = request_data['PhoneNumber']
+    OutletName = request.form['OutletName']
+    Streetaddress = request.form['Streetaddress']
+    Suburb = request.form['Suburb']
+    City = request.form['City']
+    Postcode = request.form['Postcode']
+    ContactFirstName = request.form['ContactFirstName']
+    ContactLastName = request.form['ContactLastName']
+    Emailaddress = request.form['Emailaddress']
+    PhoneNumber = request.form['PhoneNumber']
     outlet = Outlet(0, OutletName, Streetaddress, Suburb, City, Postcode, ContactFirstName, ContactLastName, Emailaddress, PhoneNumber)
     try:
         outlet.insert()

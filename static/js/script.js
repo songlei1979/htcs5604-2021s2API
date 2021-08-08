@@ -83,24 +83,14 @@ function viewAnOutlet(OutletID){
     return outlet;
 }
 
-function addAnOutlet(OutletName, Streetaddress, Suburb, City, Postcode, ContactFirstName, ContactLastName, Emailaddress, PhoneNumber){
+function addAnOutlet(inputdata){
     var msg = "";
     $.ajax({
             type: 'POST',
             url: 'https://htcs5604-2021s2api.herokuapp.com/addanoutletAPI',
-            async: false,
             dataType: "JSON", // data type expected from server
-            data: JSON.stringify({
-                OutletName: OutletName,
-                Streetaddress: Streetaddress,
-                Suburb: Suburb,
-                City: City,
-                Postcode: Postcode,
-                ContactFirstName: ContactFirstName,
-                ContactLastName: ContactLastName,
-                Emailaddress: Emailaddress,
-                PhoneNumber: PhoneNumber,
-            }),
+            async:false,
+            data: inputdata,
             success: function (data) {
                 msg = data;
             },
