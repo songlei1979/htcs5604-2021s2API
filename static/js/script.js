@@ -105,6 +105,7 @@ function addAnOutlet(OutletName, Streetaddress, Suburb, City, Postcode, ContactF
                 msg = data;
             },
             error: function(err) {
+                console.log(err)
                 msg= err;
             }
         });
