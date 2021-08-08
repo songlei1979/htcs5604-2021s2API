@@ -134,6 +134,6 @@ function addAProduct(inputdata){
                 msg= err;
             }
         });
-    var msg = "New outlet saved successfully";
+    var msg = "New product saved successfully";
     return msg;
 }

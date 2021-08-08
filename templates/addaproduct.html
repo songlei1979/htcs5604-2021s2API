@@ -11,7 +11,8 @@
             $("#CategoryID").append("<option value='0'>Please choose a category</otpion>")
             while (i < categories.length){
                 var category = categories[i];
-                $("#CategoryID").append("<option value='"+category.categoryID+"'>"+categoryname+"</option>");
+                $("#CategoryID").append("<option value='"+category.categoryID+"'>"+category.categoryname+"</option>");
+                i = i + 1;
             }
 
             $("#savebtn").click(function (){
@@ -38,9 +39,9 @@
     </script>
 
     <div class="login-box">
-    <div class="login-header">Add an outlet</div>
+    <div class="login-header">Add an product</div>
     <div class="login-body">
-        <p>Please select a outlet</p>
+
         <form class="form-group" method="post" onsubmit="return false">
             <lable>Product Barcord</lable>
             <input type="text" class="form-control" name="Productbarcord" placeholder="Product Barcord" id="Productbarcord" required>
