@@ -101,3 +101,22 @@ function addAnOutlet(inputdata){
     var msg = "New outlet saved successfully";
     return msg;
 }
+
+function addAProduct(inputdata){
+
+    $.ajax({
+            type: 'POST',
+            url: 'https://htcs5604-2021s2api.herokuapp.com/addaproductAPI',
+            dataType: "JSON", // data type expected from server
+            async:false,
+            data: inputdata,
+            success: function (data) {
+                msg = data;
+            },
+            error: function(err) {
+                msg= err;
+            }
+        });
+    var msg = "New outlet saved successfully";
+    return msg;
+}

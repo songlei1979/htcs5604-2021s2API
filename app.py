@@ -3,7 +3,7 @@ import decimal
 from flask import Flask, send_from_directory, request, redirect, url_for, session, render_template
 import simplejson as json
 
-from Classes import DataShow, Outlet
+from Classes import DataShow, Outlet, Product
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
@@ -138,6 +138,19 @@ def addanoutletapi():
     except:
         return "Insertion is failed, please contact administrator"
 
+@app.route('/addaproductAPI', methods=['POST'])
+def addaproductapi():
+    Productbarcord = request.form['Productbarcord']
+    Productname = request.form['Productname']
+    Unitprice = request.form['Unitprice']
+    Stocklevel = request.form['Stocklevel']
+    CategoryID = request.form['CategoryID']
+    product = Product(0, Productbarcord, Productname, Unitprice, Stocklevel, CategoryID)
+    try:
+        product.insert()
+        return "New product saved successfully"
+    except:
+        return "Insertion is failed, please contact administrator"
 
 @app.route("/static/<path:path>")
 def static_dir(path):
