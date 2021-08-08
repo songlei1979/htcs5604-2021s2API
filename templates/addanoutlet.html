@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <script>
+        $(document).ready(function (){
+
+            $("#savebtn").click(function (){
+                var OutletName = $("#OutletName").val();
+                var Streetaddress = $("#Streetaddress").val();
+                var Suburb = $("#Suburb").val();
+                var City = $("#City").val();
+                var Postcode = $("#Postcode").val();
+                var ContactFirstName = $("#ContactFirstName").val();
+                var ContactLastName = $("#ContactLastName").val();
+                var Emailaddress = $("#Emailaddress").val();
+                var PhoneNumber = $("#PhoneNumber").val();
+
+                alert(addAnOutlet(OutletName, Streetaddress, Suburb, City, Postcode, ContactFirstName, ContactLastName, Emailaddress, PhoneNumber));
+                $("#OutletName").val("");
+                $("#Streetaddress").val("");
+                $("#Suburb").val("");
+                $("#City").val("");
+                $("#Postcode").val("");
+                $("#ContactFirstName").val("");
+                $("#ContactLastName").val("");
+                $("#Emailaddress").val("");
+                $("#PhoneNumber").val("");
+            });
+
+            $("#exitBtn").click(function (){
+                window.location.href = "{{ url_for('home') }}";
+            });
+
+        });
+    </script>
+
+    <div class="login-box">
+    <div class="login-header">Add an outlet</div>
+    <div class="login-body">
+        <p>Please select a outlet</p>
+        <form class="form-group" method="post" onsubmit="return false">
+            <lable>Outlet Name</lable>
+            <input type="text" class="form-control" name="OutletName" placeholder="Outlet Name" id="OutletName" required>
+            <label>Street Address</label>
+            <input type="text" class="form-control" name="Streetaddress" placeholder="Street Address" id="Streetaddress" required>
+            <label>Suburb</label>
+            <input type="text" class="form-control" name="Suburb" placeholder="Suburb" id="Suburb" required>
+            <label>City</label>
+            <input type="text" class="form-control" name="City" placeholder="City" id="City" required>
+            <label>Postcode</label>
+            <input type="text" class="form-control" name="Postcode" placeholder="Postcode" id="Postcode" required>
+            <label>Contact FirstName</label>
+            <input type="text" class="form-control" name="ContactFirstName" placeholder="Contact FirstName" id="ContactFirstName" required>
+            <label>Contact LastName</label>
+            <input type="text" class="form-control" name="ContactLastName" placeholder="Contact LastName" id="ContactLastName" required>
+            <label>Email Address</label>
+            <input type="text" class="form-control" name="Emailaddress" placeholder="Email Address" id="Emailaddress" required>
+            <label>PhoneNumber</label>
+            <input type="text" class="form-control" name="PhoneNumber" placeholder="PhoneNumber" id="PhoneNumber" required>
+            <button class = "form-control btn btn-success" id = "savebtn">Save</button>
+        </form>
+        <button id="exitBtn">Close</button>
+
+    </div>
+</div>
+{% endblock %}

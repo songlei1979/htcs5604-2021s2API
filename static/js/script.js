@@ -82,3 +82,31 @@ function viewAnOutlet(OutletID){
         });
     return outlet;
 }
+
+function addAnOutlet(OutletName, Streetaddress, Suburb, City, Postcode, ContactFirstName, ContactLastName, Emailaddress, PhoneNumber){
+    var msg = "";
+    $.ajax({
+            type: 'POST',
+            url: 'https://htcs5604-2021s2api.herokuapp.com/addanoutletAPI',
+            async: false,
+            dataType: "JSON", // data type expected from server
+            data: JSON.stringify({
+                OutletName: OutletName,
+                Streetaddress: Streetaddress,
+                Suburb: Suburb,
+                City: City,
+                Postcode: Postcode,
+                ContactFirstName: ContactFirstName,
+                ContactLastName: ContactLastName,
+                Emailaddress: Emailaddress,
+                PhoneNumber: PhoneNumber,
+            }),
+            success: function (data) {
+                msg = data;
+            },
+            error: function(err) {
+                msg= err;
+            }
+        });
+    return msg;
+}

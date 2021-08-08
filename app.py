@@ -3,7 +3,7 @@ import decimal
 from flask import Flask, send_from_directory, request, redirect, url_for, session, render_template
 import simplejson as json
 
-from Classes import DataShow
+from Classes import DataShow, Outlet
 from flask_cors import CORS
 
 
@@ -52,6 +52,13 @@ def viewanoutlet():
     # check if user is loggedin
     if 'loggedin' in session:
         return render_template('viewanoutlet.html', username=session['username'])
+    return redirect(url_for('login'))
+
+@app.route('/addanoutlet')
+def addanoutlet():
+    # check if user is loggedin
+    if 'loggedin' in session:
+        return render_template('addanoutlet.html', username=session['username'])
     return redirect(url_for('login'))
 
 # products
@@ -113,6 +120,26 @@ def getOrderlines():
 def getOrderline(orderline_id):
     ds = DataShow()
     return json.dumps(ds.orderline(orderline_id))
+
+@app.route('/addanoutletAPI', methods=['POST'])
+def addanoutletapi():
+    request_data = request.get_json()
+    OutletName = request_data['OutletName']
+    Streetaddress = request_data['Streetaddress']
+    Suburb = request_data['Suburb']
+    City = request_data['City']
+    Postcode = request_data['Postcode']
+    ContactFirstName = request_data['ContactFirstName']
+    ContactLastName = request_data['ContactLastName']
+    Emailaddress = request_data['Emailaddress']
+    PhoneNumber = request_data['PhoneNumber']
+    outlet = Outlet(0, OutletName, Streetaddress, Suburb, City, Postcode, ContactFirstName, ContactLastName, Emailaddress, PhoneNumber)
+    try:
+        outlet.insert()
+        return "New outlet saved successfully"
+    except:
+        return "Insertion is failed, please contact administrator"
+
 
 @app.route("/static/<path:path>")
 def static_dir(path):
