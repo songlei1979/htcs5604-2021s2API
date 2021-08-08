@@ -10,7 +10,7 @@ class DataShow:
     def products(self):
         db = DB()
         cursor = db.connection.cursor()
-        sql = "SELECT * FROM product"
+        sql = "SELECT * FROM product order by Productname"
         cursor.execute(sql)
         result = cursor.fetchall()
         products = []

@@ -1,6 +1,6 @@
 import decimal
 
-from flask import Flask, send_from_directory, jsonify
+from flask import Flask, send_from_directory, request, redirect, url_for, session, render_template
 import simplejson as json
 
 from Classes import DataShow
@@ -9,11 +9,43 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-
+# secret key
+app.secret_key = 'cairocoders-ednalar'
 
 @app.route('/')
-def hello_world():
-    return 'Hello World!'
+def home():
+    # check if user is loggedin
+    if 'loggedin' in session:
+        return render_template('home.html', username=session['username'])
+    return redirect(url_for('login'))
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    # output message if something goes wrong...
+    msg = ''
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+        username = request.form['username']
+        password = request.form['password']
+        if username == "ISCG5604" and password == "ISCG5604":
+            session['loggedin'] = True
+            session['username'] = "ISCG5604"
+            return redirect(url_for('home'))
+        else:
+            msg = 'Incorrect username/password!'
+    return render_template('index.html', msg=msg)
+
+@app.route('/logout')
+def logout():
+    session.pop('loggedin', None)
+    session.pop('username', None)
+    return redirect(url_for('login'))
+
+@app.route('/viewaproduct')
+def viewaproduct():
+    # check if user is loggedin
+    if 'loggedin' in session:
+        return render_template('viewaproduct.html', username=session['username'])
+    return redirect(url_for('login'))
 
 # products
 @app.route('/products')

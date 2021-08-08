@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <script>
+        $(document).ready(function (){
+            $("#exitBtn").hide();
+            $("#anotherBtn").hide();
+            var products = viewAllProduct();
+            var i = 0;
+            $("#productlist").empty();
+            $("#productlist").append("<option value='0'>please select one product</option>");
+            while (i<products.length){
+                var product = products[i];
+                $("#productlist").append("<option value='"+product.ProductID+"'>"+product.Productname+"</option>");
+                i = i + 1;
+            }
+            $("#productlist").change(function (){
+                var productID = $("#productlist").val();
+                var product = viewOneProduct(productID);
+                var category = productCategory(product.CategoryID);
+                $("#productID").text(product.ProductID);
+                $("#productBarcord").text(product.Productbarcord);
+                $("#productName").text(product.Productname);
+                $("#productPrice").text(product.Unitprice);
+                $("#productLevel").text(product.Stocklevel);
+                $("#productCategory").text(category.categoryname);
+                $("#exitBtn").show();
+                $("#anotherBtn").show();
+            });
+            $("#exitBtn").click(function (){
+                window.location.href = "{{ url_for('home') }}";
+            });
+            $("#anotherBtn").click(function (){
+                $("#productID").text("");
+                $("#productBarcord").text("");
+                $("#productName").text("");
+                $("#productPrice").text("");
+                $("#productLevel").text("");
+                $("#productCategory").text("");
+            });
+        });
+    </script>
+    <h1 class="h2">Dashboard</h1>
+    <p>Welcome back, {{ username }}!</p>
+    <div class="login-box">
+    <div class="login-header">View a product</div>
+    <div class="login-body">
+        <p>Please select a product</p>
+        <form class="form-group" method="post" onsubmit="return false">
+            <lable>Product</lable>
+            <select id = "productlist">
+
+            </select>
+        </form>
+        <div id="productInfo">
+            <table>
+                <tr><td>Product ID</td><td id="productID"></td></tr>
+                <tr><td>Product Barcord</td><td id="productBarcord"></td></tr>
+                <tr><td>Product Name</td><td id="productName"></td></tr>
+                <tr><td>Unit Price</td><td id="productPrice"></td></tr>
+                <tr><td>Stock Level</td><td id="productLevel"></td></tr>
+                <tr><td>Category</td><td id="productCategory"></td></tr>
+            </table>
+            <button id="exitBtn">Close</button>
+            <button id="anotherBtn">Choose another</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

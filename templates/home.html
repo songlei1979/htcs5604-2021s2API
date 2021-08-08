@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1 class="h2">Dashboard</h1>
+    <p>Welcome back, {{ username }}!</p>
+    <div>
+        <p class="nav-item">
+            <a class="nav-link" href="{{ url_for('viewaproduct') }}">
+
+                <span>View a product</span>
+            </a>
+        </p>
+        <p class="nav-item">
+            <a class="nav-link" href="#">
+
+                <span>View an outlet</span>
+            </a>
+        </p>
+        <p class="nav-item">
+            <a class="nav-link" href="#">
+
+                <span>Add an outlet</span>
+            </a>
+        </p>
+        <p class="nav-item">
+            <a class="nav-link" href="#">
+
+                <span>Add a product</span>
+            </a>
+        </p>
+        <p class="nav-item">
+            <a class="nav-link" href="#">
+
+                <span>Update an order</span>
+            </a>
+        </p>
+        <p class="nav-item">
+            <a class="nav-link" href="#">
+
+                <span>Return a product</span>
+            </a>
+        </p>
+        <p class="nav-item">
+            <a class="nav-link" href="#">
+
+                <span>Print monthly orders</span>
+            </a>
+        </p>
+        <p class="nav-item">
+            <a class="nav-link" href="#">
+
+                <span>Print products by category</span>
+            </a>
+        </p>
+    </div>
+{% endblock %}
