@@ -91,6 +91,13 @@ def getProductsByCategory(category_id):
     ds = DataShow()
     return json.dumps(ds.productsByCategory(category_id))
 
+@app.route('/completedOrdersByMonth/')
+def completedOrdersByMonth():
+    month = request.args.get('month')
+    year = request.args.get('year')
+    ds = DataShow()
+    return json.dumps(ds.completedOrdersByMonthes(month, year))
+
 #Product Category
 @app.route('/productcategories')
 def getCategories():

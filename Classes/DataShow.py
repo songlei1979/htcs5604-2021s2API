@@ -128,3 +128,16 @@ class DataShow:
         for o in result:
             orderline = Orderline(o[0], o[1], o[2], o[3], o[4])
             return orderline.__dict__
+
+    def completedOrdersByMonthes(self, Month, Year):
+        db = DB()
+        cursor = db.connection.cursor()
+        sql = "SELECT * FROM orders YEAR(date(DeliveyDate))="+str(Year)+" AND MONTH(date(DeliveyDate))=" + str(Month) + " AND OrderStatus = 'Completed' order by DeliveyDate"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        orders = []
+        for o in result:
+            order1 = Order(o[0], str(o[1]), o[2], str(o[3]), o[4])
+            orders.append(order1.__dict__)
+        return orders
+
