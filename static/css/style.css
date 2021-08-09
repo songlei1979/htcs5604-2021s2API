@@ -7,7 +7,7 @@ body {
     height:50%;
     width: 70%;
     border: 1px solid gray;
-    margin-left: 35%;
+    /*margin-left: 10%;*/
     margin-top: 10%;
     position: relative;
     box-shadow: 21px 12px 24px 10px rgba(0,0,0,.5);
