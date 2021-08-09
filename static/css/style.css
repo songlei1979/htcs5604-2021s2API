@@ -1,6 +1,7 @@
 body {
     background-color: #435165;
     margin: 0;
+    text-align: center;
 }
 
 .login-box{
@@ -8,7 +9,7 @@ body {
     width: 70%;
     border: 1px solid gray;
     /*margin-left: 10%;*/
-    margin-top: 20%;
+    margin-top: 10%;
     position: relative;
     box-shadow: 21px 12px 24px 10px rgba(0,0,0,.5);
     background: #dadada;
