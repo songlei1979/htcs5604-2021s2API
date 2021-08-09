@@ -154,3 +154,21 @@ function addAProduct(inputdata){
     var msg = "New product saved successfully";
     return msg;
 }
+
+function viewOrdersByMonthAndYear(month, year){
+    http://127.0.0.1:5000/completedOrdersByMonth/?month=8&year=2021
+    var orders = []
+    $.ajax({
+            type: 'GET',
+            url: 'https://htcs5604-2021s2api.herokuapp.com/completedOrdersByMonth/?month='+month+'&year='+year,
+            async: false,
+            dataType: "JSON", // data type expected from server
+            success: function (data) {
+                orders = data;
+            },
+            error: function(err) {
+                console.log('Error: ' + err);
+            }
+        });
+    return orders;
+}
