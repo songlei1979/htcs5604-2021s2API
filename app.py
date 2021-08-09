@@ -67,6 +67,13 @@ def addaproduct():
         return render_template('addaproduct.html', username=session['username'])
     return redirect(url_for('login'))
 
+@app.route('/printproducts')
+def printproducts():
+    # check if user is loggedin
+    if 'loggedin' in session:
+        return render_template('productsreport.html', username=session['username'])
+    return redirect(url_for('login'))
+
 # products
 @app.route('/products')
 def getProducts():
