@@ -74,6 +74,13 @@ def printproducts():
         return render_template('productsreport.html', username=session['username'])
     return redirect(url_for('login'))
 
+@app.route('/printorders')
+def printorders():
+    # check if user is loggedin
+    if 'loggedin' in session:
+        return render_template('ordersreport.html', username=session['username'])
+    return redirect(url_for('login'))
+
 # products
 @app.route('/products')
 def getProducts():
