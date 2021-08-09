@@ -19,6 +19,18 @@ class DataShow:
             products.append(product.__dict__)
         return products
 
+    def productsByCategory(self, categoryID):
+        db = DB()
+        cursor = db.connection.cursor()
+        sql = "SELECT * FROM product where CategoryID = "+ str(categoryID) +" order by Productname"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        products = []
+        for p in result:
+            product = Product(p[0], p[1], p[2], p[3], p[4], p[5])
+            products.append(product.__dict__)
+        return products
+
     def product(self, ProductID):
         db = DB()
         cursor = db.connection.cursor()
@@ -116,6 +128,3 @@ class DataShow:
         for o in result:
             orderline = Orderline(o[0], o[1], o[2], o[3], o[4])
             return orderline.__dict__
-
-ds = DataShow()
-print(ds.orders())

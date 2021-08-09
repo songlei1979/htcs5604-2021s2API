@@ -79,6 +79,11 @@ def getProduct(product_id):
     ds = DataShow()
     return json.dumps(ds.product(product_id))
 
+@app.route('/productsByCategory/<category_id>')
+def getProductsByCategory(category_id):
+    ds = DataShow()
+    return json.dumps(ds.productsByCategory(category_id))
+
 #Product Category
 @app.route('/productcategories')
 def getCategories():

@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <script>
+        $(document).ready(function (){
+            $("#categoryList").empty();
+            var categories = productCategories();
+            $("#categoryList").append("<option value='0'>please select a category</option>");
+            var i = 0;
+            while (i < categories.length){
+                var category = categories[i];
+                $("#categoryList").append("<option value='"+category.categoryID+"'>"+category.categoryname+"</option>");
+                i = i + 1;
+            }
+
+
+
+            $("#exitBtn").hide();
+            $("#print").hide();
+
+            $("#categoryList").change(function (){
+                var category = productCategory($("#categoryList").val())
+                $("#reporttable").empty();
+                $("#reporttable").append("<tr><th colspan='4'>Product Report for the category "+category.categoryname+"</th></tr>");
+                $("#reporttable").append("<tr><th>Product Barcode</th><th>Product Name</th> <th>Unit Price</th> <th>Stock Level</th> </tr>");
+                var products = productsByCategory(category.categoryID);
+                var i = 0;
+                while (i < products.length){
+                    var product = products[i];
+                    $("#reporttable").append("<tr><td>"+product.Productbarcord+"</td><td>"+product.Productname+"</td> <td>"+product.Unitprice+"</td> <td>"+product.Stocklevel+"</td> </tr>");
+                    i = i + 1;
+                }
+                $("#reporttable").append("<tr><th>Total: </th><td colspan='3'>"+products.length+"</td></tr>");
+            });
+
+            $("#exitBtn").click(function (){
+                window.location.href = "{{ url_for('home') }}";
+            });
+
+        });
+    </script>
+
+    <div class="login-box">
+    <div class="login-header">Product Report</div>
+    <div class="login-body">
+        <p>Please select a product category</p>
+        <select id = "categoryList">
+
+        </select>
+        <div id="productsInfo">
+            <table id="reporttable">
+
+
+            </table>
+            <button id="exitBtn">Close</button>
+            <button id="print">Print</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -49,6 +49,23 @@ function productCategory(categoryID){
     return category;
 }
 
+function productsByCategory(categoryID){
+    var products = "";
+    $.ajax({
+            type: 'GET',
+            url: 'https://htcs5604-2021s2api.herokuapp.com/productsByCategory/'+categoryID,
+            async: false,
+            dataType: "JSON", // data type expected from server
+            success: function (data) {
+                products = data;
+            },
+            error: function(err) {
+                console.log('Error: ' + err);
+            }
+        });
+    return products;
+}
+
 function productCategories(){
     var categories = "";
     $.ajax({
