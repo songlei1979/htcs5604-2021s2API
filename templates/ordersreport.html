@@ -63,6 +63,7 @@
                 var month = $("#month").val();
                 var orders = viewOrdersByMonthAndYear(month,year);
                 $("#reporttable").empty();
+                $("#reporttable").append("<tr><th colspan='4'>Monthly report for "+month+", "+year+"</th></tr>")
                 $("#reporttable").append("<tr><th>Outlet Name</th><th>Order Number</th><th>Order Date</th><th>Order Total</th></tr>");
                 var i = 0;
                 while (i < orders.length){
@@ -72,6 +73,7 @@
                     $("#reporttable").append("<tr><th>"+outlet.OutletName+"</th><th>"+order.OrderNumber+"</th><th>"+order.OrderDate+"</th><th>"+total+"</th></tr>");
                     i = i + 1;
                 }
+                $("#reporttable").append("<tr><th>Total orders</th><td>"+orders.length+"</td></tr>");
             });
 
             $("#exitBtn").click(function (){
