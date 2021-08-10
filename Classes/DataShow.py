@@ -148,21 +148,24 @@ class DataShow:
         sql = "SELECT * FROM orderline where OrderNumber = " + str(OrderNumber)
         cursor.execute(sql)
         result = cursor.fetchall()
+        orderlines = []
         for o in result:
             orderline = Orderline(o[0], o[1], o[2], o[3], o[4])
-            return orderline.__dict__
+            orderlines.append(orderline.__dict__)
+        return orderlines
 
     def orderTotalPrice(self, OrderNumber):
         # 1. select all orderlines belong to this OrderNumber
         orderlines = self.orderlinesByOrder(OrderNumber)
+        print(orderlines)
         # 2. Get all products and quantities from orderlines
         i = 0
         total=0
         while i < len(orderlines):
             orderline = orderlines[i]
-            product = self.product(orderline.ProductID)
-            price = product.Unitprice
-            quantity = orderline.Quantitysupplied
+            product = self.product(orderline['ProductID'])
+            price = product['Unitprice']
+            quantity = orderline['Quantitysupplied']
             total += float(price) * int(quantity)
             i = i + 1
         return total

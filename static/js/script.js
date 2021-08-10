@@ -172,3 +172,20 @@ function viewOrdersByMonthAndYear(month, year){
         });
     return orders;
 }
+
+function getTotalPriceForAnOrder(OrderNumber){
+    var total = 0;
+    $.ajax({
+            type: 'GET',
+            url: 'https://htcs5604-2021s2api.herokuapp.com/orderTotalPrice/'+OrderNumber,
+            async: false,
+            dataType: "JSON", // data type expected from server
+            success: function (data) {
+                total = data;
+            },
+            error: function(err) {
+                console.log('Error: ' + err);
+            }
+        });
+    return total;
+}

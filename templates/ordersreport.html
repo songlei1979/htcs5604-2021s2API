@@ -68,7 +68,8 @@
                 while (i < orders.length){
                     var order = orders[i];
                     var outlet = viewAnOutlet(order.OutletID);
-                    $("#reporttable").append("<tr><th>"+outlet.OutletName+"</th><th>"+order.OrderNumber+"</th><th>"+order.OrderDate+"</th><th>Order Total</th></tr>");
+                    var total = getTotalPriceForAnOrder(order.OrderNumber)
+                    $("#reporttable").append("<tr><th>"+outlet.OutletName+"</th><th>"+order.OrderNumber+"</th><th>"+order.OrderDate+"</th><th>"+total+"</th></tr>");
                     i = i + 1;
                 }
             });
