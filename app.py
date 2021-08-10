@@ -105,6 +105,12 @@ def completedOrdersByMonth():
     ds = DataShow()
     return json.dumps(ds.completedOrdersByMonthes(month, year))
 
+@app.route('/orderTotalPrice/<orderNumber>')
+def orderTotalPrice(orderNumber):
+    ds = DataShow()
+    return json.dumps(ds.orderTotalPrice(orderNumber))
+
+
 #Product Category
 @app.route('/productcategories')
 def getCategories():
